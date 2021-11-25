@@ -6,13 +6,17 @@ A Solitaire clone made in Unity.
 
 ## Tasklist
 
-- [ ] Klondike
+- [ ] Implement Klondike game
+- [ ] Allow player to choose between drawing one vs drawing three
+- [ ] Track number of moves
+- [ ] Track time for each game
 - [ ] Finish art for K, Q, J
 
 ## Wishlist
 
 - Additional card games
 - Additional art for both the front and back
+- Track score
 
 # License
 
