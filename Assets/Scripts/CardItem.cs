@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CardItem : MonoBehaviour
 {
-    public string suit;
-    public int value;
+    public string suit { get; private set; }
+    public int value   { get; private set; }
     public int pileIndex;
 
     public bool isFaceUp = false;
@@ -31,7 +29,19 @@ public class CardItem : MonoBehaviour
             else if (c == 'K')
                 value = 13;
             else
-                value = (int)char.GetNumericValue(c); 
+                value = (int)char.GetNumericValue(c);
+        }
+        if (CompareTag("Foundation"))
+        {
+            suit = null;
+            value = 0;
+
+            isInFoundationPile = true;
+        }
+        else if (CompareTag("Tableau"))
+        {
+            suit = null;
+            value = 14;
         }
     }
 }

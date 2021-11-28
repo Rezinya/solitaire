@@ -10,7 +10,6 @@ public class SolitaireManager : MonoBehaviour
     public GameObject stockPileGO;
     public GameObject[] foundationPilesGO;
     public GameObject[] tableauPilesGO;
-    
 
     public List<string>[] tableauPilesList;
     public List<string> talonPileList = new List<string>();
@@ -24,8 +23,8 @@ public class SolitaireManager : MonoBehaviour
     private int _stockPileIndex;
     private int _drawThree;
     private int _drawRemainder;
-    private List<string> _discardPileList = new List<string>();
     private List<List<string>> _stockSetsList = new List<List<string>>();
+    private List<string> _discardPileList = new List<string>();
     private List<string> _tableauList0 = new List<string>();
     private List<string> _tableauList1 = new List<string>();
     private List<string> _tableauList2 = new List<string>();
@@ -208,7 +207,7 @@ public class SolitaireManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        // Form the Talon pile by drawing a set of three cards
+        // Form the Talon by drawing a set of three cards
         if (_stockPileIndex < _drawThree)
         {
             isStockEmpty = false;
@@ -250,8 +249,10 @@ public class SolitaireManager : MonoBehaviour
 
     public void ResetStock()
     {
-        // We add the discardPile back into the deck
-        // to be played (and sorted) again
+        // We then clear the deck...
+        _deck.Clear();
+
+        // ... and add the discardPile back to be played (and sorted) again
         foreach (string card in _discardPileList)
         {
             _deck.Add(card);
