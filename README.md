@@ -4,16 +4,18 @@ A Solitaire clone made in Unity.
 
 # Content
 
-- [ ] Implement Klondike game
-- [ ] Allow player to choose between drawing one vs drawing three
-- [ ] Track number of moves
-- [ ] Track time for each game
+- [x] Implement Klondike solitaire game
 - [ ] Finish art for K, Q, J
+- [ ] Add splash art when winning the game
+- [ ] Allow player to choose drawing one vs drawing three
 
 ## Wishlist
 
-- Allow drag and drop
-- Track score
+- Allow building sequences via drag-and-drop and/or double-click
+- Track number of moves
+- Track time
+- Track score (Standard)
+
 - Additional card games
 - Additional art for both the front and back
 

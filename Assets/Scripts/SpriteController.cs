@@ -18,7 +18,10 @@ public class SpriteController : MonoBehaviour
         // cardFaces[] also corresponds to that order, 
         // so we can match the sprite to its object
         List<string> deck = SolitaireManager.GenerateDeck();
-        _solitaireManager = FindObjectOfType<SolitaireManager>();
+        
+        _solitaireManager = GameObject
+            .FindGameObjectWithTag("GameController")
+            .GetComponent<SolitaireManager>();
 
         int i = 0;
 

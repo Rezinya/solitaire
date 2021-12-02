@@ -9,6 +9,7 @@ TagManager:
   - Stock
   - Talon
   - Card
+  - DrawNumberToggle
   layers:
   - Default
   - TransparentFX

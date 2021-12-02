@@ -1,20 +1,26 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
     private SolitaireManager _solitaireManager;
+    private ScoreManager _scoreManager;
     private SpriteController _spriteController;
     private StockSpriteController _stockSpriteController;
-
     private GameObject _selectedCardGO;
 
     void Start()
     {
-        _solitaireManager = FindObjectOfType<SolitaireManager>();
-        _spriteController = FindObjectOfType<SpriteController>();
-        _stockSpriteController = FindObjectOfType<StockSpriteController>();
-        
+        _solitaireManager = GetComponent<SolitaireManager>();
+        _scoreManager = GetComponent<ScoreManager>();
+
+        _spriteController = GameObject
+            .FindGameObjectWithTag("Card")
+            .GetComponent<SpriteController>();
+        _stockSpriteController = GameObject
+            .FindGameObjectWithTag("Stock")
+            .GetComponent<StockSpriteController>();
 
         // Initialize selectedCard to SolitaireGame
         _selectedCardGO = this.gameObject;
@@ -32,16 +38,19 @@ public class PlayerController : MonoBehaviour
             Camera.main.ScreenToWorldPoint(Input.mousePosition), 
             Vector2.zero);
 
-        if (hit)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (hit.collider.CompareTag("Stock"))
-                OnStockClick();
-            else if (hit.collider.CompareTag("Foundation"))
-                OnFoundationClick(hit.collider.gameObject);
-            else if (hit.collider.CompareTag("Tableau"))
-                OnTableauClick(hit.collider.gameObject);
-            else if (hit.collider.CompareTag("Card"))
-                OnCardClick(hit.collider.gameObject); 
+            if (hit)
+            {
+                if (hit.collider.CompareTag("Stock"))
+                    OnStockClick();
+                else if (hit.collider.CompareTag("Foundation"))
+                    OnFoundationClick(hit.collider.gameObject);
+                else if (hit.collider.CompareTag("Tableau"))
+                    OnTableauClick(hit.collider.gameObject);
+                else if (hit.collider.CompareTag("Card"))
+                    OnCardClick(hit.collider.gameObject); 
+            }
         }
     }
     
@@ -49,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Clicked on Stock");
 
-        _solitaireManager.DealTalonByThree();
+        _solitaireManager.DrawTalon();
         _stockSpriteController.ToggleSprite();
 
         // Reset selectedCard in case the player selects a card
@@ -267,12 +276,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Invalid sequence: Card " 
             + cardToMove.suit + cardToMove.value + " to Card " 
             + cardPeek.suit + cardPeek.value);
-        Debug.Log("Clicked on Foundation? " 
-            + (cardPeek.isInFoundationPile ? "Yes" : "No") 
-            + "; Same suit? " 
-            + (cardPeek.suit == cardToMove.suit ? "Yes" : "No") 
-            + "; Selected card value = " 
-            + cardToMove.value);
 
         return false;
     }
@@ -324,11 +327,18 @@ public class PlayerController : MonoBehaviour
                 + " from Foundation " + cardToMove.pileIndex);
 
             cardToMove.isInFoundationPile = false;
+
+            _scoreManager.TallyFoundation(cardToMove.value * -1);
         }
 
         // Moving to Foundation
-        if (cardPeek.isInFoundationPile)
+        if (cardPeek.isInFoundationPile) 
+        { 
             cardToMove.isInFoundationPile = true;
+
+            _scoreManager.TallyFoundation(cardToMove.value);
+        }
+            
 
         // Leaving a Tableau pile: (Attempt to) Remove from list
         // if it was part of the initial pile

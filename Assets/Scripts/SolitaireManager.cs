@@ -10,7 +10,6 @@ public class SolitaireManager : MonoBehaviour
     public GameObject stockPileGO;
     public GameObject[] foundationPilesGO;
     public GameObject[] tableauPilesGO;
-
     public List<string>[] tableauPilesList;
     public List<string> talonPileList = new List<string>();
     public bool isStockEmpty = false;
@@ -19,10 +18,12 @@ public class SolitaireManager : MonoBehaviour
     private static string[] _suits = new string[] { "C", "D", "H", "S" };
     private static string[] _rankings = new string[] { "A", "2", "3", "4", 
         "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
-    
-    private int _stockPileIndex;
+
+    public DrawNumberToggle drawNumberToggle;
     private int _drawThree;
     private int _drawRemainder;
+    private int _stockPileIndex;
+
     private List<List<string>> _stockSetsList = new List<List<string>>();
     private List<string> _discardPileList = new List<string>();
     private List<string> _tableauList0 = new List<string>();
@@ -35,20 +36,23 @@ public class SolitaireManager : MonoBehaviour
 
     void Start()
     {
-        // At the beginning of each game, the Tableau must be dealt
         tableauPilesList = new List<string>[] { _tableauList0, 
             _tableauList1, _tableauList2, _tableauList3, _tableauList4, 
             _tableauList5, _tableauList6 };
 
-        // We create a standard 52-card deck, shuffle it...
+        StartGame();
+    }
+
+    private void StartGame()
+    {
         _deck = GenerateDeck();
         Shuffle(_deck);
 
-        // ...Then form the seven bottom piles
         SetUpTableau();
         StartCoroutine(DealTableau());
 
-        SortStockIntoSetsOfThree();
+        if (!drawNumberToggle.isDrawingByOne)
+            SortStockIntoSetsOfThree();
     }
 
     public static List<string> GenerateDeck()
@@ -140,8 +144,73 @@ public class SolitaireManager : MonoBehaviour
 
         _discardPileList.Clear();
     }
+    
+    public void DrawTalon()
+    {
+        if (drawNumberToggle.isDrawingByOne)
+        {
+            _stockPileIndex = 0;
 
-    public void SortStockIntoSetsOfThree()
+            DrawTalonByOne();
+        }
+        else 
+            DrawTalonByThree();
+    }
+
+    private void DrawTalonByOne() 
+    {
+        foreach (Transform child in stockPileGO.transform)
+        {
+            // Drawn cards are removed from the deck
+            // and added to to the discardPile
+            _deck.Remove(child.name);
+
+            // We will use the discardPile to track which cards
+            // are still playable and then sent back to Stock
+            _discardPileList.Add(child.name);
+
+            // Delete instantiated cards
+            Destroy(child.gameObject);
+        }
+
+        // Form the Talon
+        if (_stockPileIndex < _deck.Count)
+        {
+            isStockEmpty = false;
+            talonPileList.Clear();
+
+            float xOffset = 2.5f;
+            float zOffset = 0.02f;
+
+            foreach (string card in _deck)
+            {
+                GameObject newCard = Instantiate(
+                    cardPrefab,
+                    new Vector3(stockPileGO.transform.position.x + xOffset,
+                        stockPileGO.transform.position.y,
+                        stockPileGO.transform.position.z - zOffset),
+                    Quaternion.identity,
+                    stockPileGO.transform);
+
+                newCard.name = card;
+                newCard.GetComponent<CardItem>().isFaceUp = true;
+                newCard.GetComponent<CardItem>().isInTalonPile = true;
+
+                talonPileList.Add(card);
+            }
+
+            _stockPileIndex++;
+        }
+        else
+        {
+            // Debug.Log("Stock is now empty.");
+            isStockEmpty = true;
+
+            ResetStock();
+        }
+    }
+
+    private void SortStockIntoSetsOfThree()
     {
         // If the player chooses to draw by three,
         // we split the Stock (that is, the remaining cards in deck)
@@ -182,16 +251,12 @@ public class SolitaireManager : MonoBehaviour
 
             // And add this last set to stockSets
             _stockSetsList.Add(setRemainder);
-
-            // drawThree will be used to keep track of how many times 
-            // the player can draw from the Stock
-            _drawThree++;
         }
 
         _stockPileIndex = 0;
     }
 
-    public void DealTalonByThree()
+    private void DrawTalonByThree()
     {
         foreach (Transform child in stockPileGO.transform)
         {
@@ -240,25 +305,24 @@ public class SolitaireManager : MonoBehaviour
         }
         else
         {
-            // Debug.Log("Stock is now empty.");
             isStockEmpty = true;
 
             ResetStock();
         }
     }
 
-    public void ResetStock()
+    private void ResetStock()
     {
-        // We then clear the deck...
         _deck.Clear();
 
-        // ... and add the discardPile back to be played (and sorted) again
         foreach (string card in _discardPileList)
         {
             _deck.Add(card);
         }
 
         _discardPileList.Clear();
-        SortStockIntoSetsOfThree();
+
+        if (!drawNumberToggle.isDrawingByOne)
+            SortStockIntoSetsOfThree();
     }
 }

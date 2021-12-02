@@ -12,9 +12,11 @@ public class StockSpriteController : MonoBehaviour
 
     void Start()
     {
-        _solitaireManager = FindObjectOfType<SolitaireManager>();
+        _solitaireManager = GameObject
+            .FindGameObjectWithTag("GameController")
+            .GetComponent<SolitaireManager>();
 
-        _spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void ToggleSprite()
