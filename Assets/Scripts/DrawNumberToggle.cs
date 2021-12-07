@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class DrawNumberToggle : MonoBehaviour
 {
-    public bool isDrawingByOne;
-
-    private int drawNum;
+    private int _drawNum;
     private Toggle _drawOneToggle;
     private Toggle _drawThreeToggle;
+    
+    public bool IsDrawingByOne;
 
     void Start()
     {
@@ -31,21 +31,12 @@ public class DrawNumberToggle : MonoBehaviour
         }
 
         // Default draw number is set to three
-        drawNum = PlayerPrefs.GetInt("DrawNumber", 3);
+        _drawNum = PlayerPrefs.GetInt("DrawNumber", 3);
 
-        if (drawNum == 3)
-        {
-            Debug.Log("Draw number is currently set to: Three");
-
-            isDrawingByOne = false;
-        }
-        else 
-        {
-            Debug.Log("Draw number is currently set to: One");
-
-            isDrawingByOne = true;
-        }
-
+        if (_drawNum == 3)
+            IsDrawingByOne = false;
+        else
+            IsDrawingByOne = true;
     }
 
     public void SetDrawNumberOne()

@@ -525,10 +525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 4
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!61 &192594430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -806,10 +806,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 2
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!61 &484696472
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -955,8 +955,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -45}
-  m_SizeDelta: {x: 250, y: 40}
+  m_AnchoredPosition: {x: 100, y: -45}
+  m_SizeDelta: {x: 120, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &528018727
 MonoBehaviour:
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2420560276bdf498eedbafde275980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDrawingByOne: 0
+  IsDrawingByOne: 0
 --- !u!1 &530459971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1281,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -400, y: -140}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &609032970
 MonoBehaviour:
@@ -1335,7 +1335,7 @@ GameObject:
   - component: {fileID: 613016436}
   - component: {fileID: 613016438}
   m_Layer: 0
-  m_Name: StockPile
+  m_Name: Stock
   m_TagString: Stock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1465,8 +1465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8608b9933264c774786f3115bdc870af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetPile: {fileID: 21300000, guid: 0c74666e8957ca643973b6bf3528d4d2, type: 3}
-  cardBack: {fileID: 21300000, guid: ee431f8e036bf58469e4695ee3dc745e, type: 3}
+  ResetPile: {fileID: 21300000, guid: 0c74666e8957ca643973b6bf3528d4d2, type: 3}
+  CardBack: {fileID: 21300000, guid: ee431f8e036bf58469e4695ee3dc745e, type: 3}
 --- !u!1 &644620710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,10 +1611,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 1
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!1 &650810954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,10 +1904,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 3
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!1 &1015002515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,8 +2023,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -60, y: -180}
-  m_SizeDelta: {x: 600, y: 45}
+  m_AnchoredPosition: {x: -100, y: -180}
+  m_SizeDelta: {x: 450, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020900674
 MonoBehaviour:
@@ -2061,12 +2061,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 7ee0c0dcb7513ca4ba54eb847a58338e, type: 3}
-    m_FontSize: 30
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2093,7 +2093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2420560276bdf498eedbafde275980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDrawingByOne: 0
+  IsDrawingByOne: 0
 --- !u!1 &1116399638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,7 +2104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1116399639}
   m_Layer: 0
-  m_Name: Tableau
+  m_Name: TableauPiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2190,7 +2190,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 7ee0c0dcb7513ca4ba54eb847a58338e, type: 3}
-    m_FontSize: 28
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -2201,7 +2201,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Draw One
+  m_Text: One
 --- !u!222 &1121264578
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2333,7 +2333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd4f48dc3e4ac445a6ed47dcfaad5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardFaces:
+  DrawNumberToggle: {fileID: 1020900677}
+  CardFaces:
   - {fileID: 21300000, guid: a37b921046671bb45a7c65e3ae8b2d11, type: 3}
   - {fileID: 21300000, guid: 34dd4b221d73cdc418716db84d927d7a, type: 3}
   - {fileID: 21300000, guid: 6f53424acb637d1448c2b4d1803fd098, type: 3}
@@ -2386,14 +2387,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6b09873b21963aa4d86055ab0de749be, type: 3}
   - {fileID: 21300000, guid: e79f902c516323a4494abcaefba094ed, type: 3}
   - {fileID: 21300000, guid: 131921d50ac095240af7530c65e493d4, type: 3}
-  cardPrefab: {fileID: 1357090876}
-  stockPileGO: {fileID: 613016433}
-  foundationPilesGO:
+  CardPrefab: {fileID: 1357090876}
+  StockPileGO: {fileID: 613016433}
+  FoundationPilesGO:
   - {fileID: 1868741968}
   - {fileID: 644620710}
   - {fileID: 2028038974}
   - {fileID: 911761445}
-  tableauPilesGO:
+  TableauPilesGO:
   - {fileID: 1622396706}
   - {fileID: 2116255352}
   - {fileID: 484696467}
@@ -2401,9 +2402,7 @@ MonoBehaviour:
   - {fileID: 192594425}
   - {fileID: 1493758269}
   - {fileID: 1670700250}
-  talonPileList: []
-  isStockEmpty: 0
-  drawNumberToggle: {fileID: 1020900677}
+  IsStockEmpty: 0
 --- !u!4 &1268108403
 Transform:
   m_ObjectHideFlags: 0
@@ -2430,10 +2429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a622f4778568b479dbd1977478e6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionsPanel: {fileID: 609032968}
-  newGameButton: {fileID: 166569982}
-  optionsButton: {fileID: 563545533}
-  closeOptionsButton: {fileID: 2038886989}
+  OptionsPanel: {fileID: 609032968}
+  NewGameButton: {fileID: 166569982}
+  OptionsButton: {fileID: 563545533}
 --- !u!114 &1268108405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2446,8 +2444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f9d7864499d5548a18a8497bb7052f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winPanel: {fileID: 1015002515}
-  newGameButton: {fileID: 166569982}
+  WinPanel: {fileID: 1015002515}
+  NewGameButton: {fileID: 166569982}
 --- !u!1 &1282242102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,8 +2561,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60, y: -45}
-  m_SizeDelta: {x: 250, y: 40}
+  m_AnchoredPosition: {x: -100, y: -45}
+  m_SizeDelta: {x: 120, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1335937932
 MonoBehaviour:
@@ -2638,7 +2636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2420560276bdf498eedbafde275980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDrawingByOne: 0
+  IsDrawingByOne: 0
 --- !u!1 &1340073045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,7 +2696,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 7ee0c0dcb7513ca4ba54eb847a58338e, type: 3}
-    m_FontSize: 28
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -2709,7 +2707,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Draw Three
+  m_Text: Three
 --- !u!222 &1340073048
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2753,10 +2751,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 0
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!1 &1367824651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,7 +2765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1367824652}
   m_Layer: 0
-  m_Name: Foundation
+  m_Name: FoundationPiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2909,10 +2907,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 5
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!61 &1493758274
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3133,10 +3131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 0
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!61 &1622396711
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3281,10 +3279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 3
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!61 &1653794301
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3429,10 +3427,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 6
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!61 &1670700255
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3757,10 +3755,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 0
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!1 &2014033030
 GameObject:
   m_ObjectHideFlags: 0
@@ -3830,9 +3828,9 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -4008,10 +4006,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 2
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!1 &2038886989
 GameObject:
   m_ObjectHideFlags: 0
@@ -4155,7 +4153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2055434431}
   m_Layer: 0
-  m_Name: Pile
+  m_Name: StockPile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4211,8 +4209,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
-  m_SizeDelta: {x: 270, y: 60}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 250, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2066921041
 MonoBehaviour:
@@ -4374,10 +4372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52423d975388194d955c11dedc2c013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileIndex: 1
-  isFaceUp: 0
-  isInTalonPile: 0
-  isInFoundationPile: 0
+  PileIndex: 0
+  IsFaceUp: 0
+  IsInTalonPile: 0
+  IsInFoundationPile: 0
 --- !u!61 &2116255357
 BoxCollider2D:
   m_ObjectHideFlags: 0

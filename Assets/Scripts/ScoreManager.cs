@@ -4,31 +4,28 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public GameObject winPanel;
-    public GameObject newGameButton;
-
-    private int totalValue;
-
-    private void Awake()
-    {
-        totalValue = 0;
-    }
+    private int _totalValue;
+    
+    public GameObject WinPanel;
+    public GameObject NewGameButton;
 
     void Start()
     {
-        winPanel.SetActive(false);
+        _totalValue = 0;
+        
+        WinPanel.SetActive(false);
     }
 
     public void TallyFoundation(int value) 
     {
-        totalValue += value;
+        _totalValue += value;
 
-        Debug.Log("Foundation value = " + totalValue);
+        Debug.Log("Foundation value = " + _totalValue);
 
-        if (totalValue == 52) 
+        if (_totalValue == 52) 
         {
-            winPanel.SetActive(true);
-            newGameButton.SetActive(false);
+            WinPanel.SetActive(true);
+            NewGameButton.SetActive(false);
         }
     }
 }

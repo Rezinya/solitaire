@@ -5,7 +5,7 @@ A Solitaire clone made in Unity.
 # Content
 
 - [x] Implement Klondike solitaire game
-- [ ] Finish art for K, Q, J
+- [ ] Finish art for all K, Q, J
 - [ ] Add splash art when winning the game
 - [ ] Allow player to choose drawing one vs drawing three
 

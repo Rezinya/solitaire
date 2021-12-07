@@ -2,46 +2,95 @@ using UnityEngine;
 
 public class CardItem : MonoBehaviour
 {
-    public string suit { get; private set; }
-    public int value   { get; private set; }
-    public int pileIndex;
+    public string Suit { get; private set; }
+    public int Value   { get; private set; }
+    public int PileIndex;
 
-    public bool isFaceUp = false;
-    public bool isInTalonPile = false;
-    public bool isInFoundationPile = false;
+    public bool IsFaceUp { get; private set; }
+    public bool IsInTalonPile { get; private set; }
+    public bool IsInFoundationPile { get; private set; }
+
+    private SpriteController _spriteController;
+
+    void Awake()
+    {
+        _spriteController = GetComponent<SpriteController>();
+    }
 
     void Start()
     {
         if (CompareTag("Card"))
         {
-            suit = transform.name[0].ToString();
+            Suit = transform.name[0].ToString();
 
             char c = transform.name[1];
 
             if (c == 'A')
-                value = 1;
+                Value = 1;
             else if (c == '1')
-                value = 10;
+                Value = 10;
             else if (c == 'J')
-                value = 11;
+                Value = 11;
             else if (c == 'Q')
-                value = 12;
+                Value = 12;
             else if (c == 'K')
-                value = 13;
+                Value = 13;
             else
-                value = (int)char.GetNumericValue(c);
+                Value = (int)char.GetNumericValue(c);
+
+            IsInFoundationPile = false;
         }
         if (CompareTag("Foundation"))
         {
-            suit = null;
-            value = 0;
+            Suit = null;
+            Value = 0;
 
-            isInFoundationPile = true;
+            IsInFoundationPile = true;
         }
         else if (CompareTag("Tableau"))
         {
-            suit = null;
-            value = 14;
+            Suit = null;
+            Value = 14;
+
+            IsInFoundationPile = false;
         }
+    }
+    
+    public void InstantiatedInTalon() 
+    {
+        IsFaceUp = true;
+        IsInTalonPile = true;
+        _spriteController.ToggleSprite();
+    }
+
+    public void SetFaceUp()
+    {
+        IsFaceUp = true;
+        _spriteController.ToggleSprite();
+    }
+
+    public void HasLeftTalonPile() 
+    {
+        IsInTalonPile = false;
+    }
+
+    public void UpdateFoundationStatus() 
+    {
+        // Didn't want to set this as a toggle since a card can move between Foundation piles
+        Transform t = this.gameObject.transform;
+        bool childOfFoundation = false;
+
+        while (t.parent != null) 
+        {
+            if (t.parent.CompareTag("Foundation"))
+                childOfFoundation = true;
+
+            t = t.parent.transform;
+        }
+
+        if (childOfFoundation)
+            IsInFoundationPile = true;
+        else
+            IsInFoundationPile = false;
     }
 }
