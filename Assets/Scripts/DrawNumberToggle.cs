@@ -9,53 +9,44 @@ public class DrawNumberToggle : MonoBehaviour
     private Toggle _drawOneToggle;
     private Toggle _drawThreeToggle;
     
-    public bool IsDrawingByOne;
+    public bool IsDrawingByThree;
 
     void Start()
     {
-        if (CompareTag("DrawOne"))
+        Component[] toggles = GetComponentsInChildren(typeof(Toggle), true);
+
+        foreach (Toggle toggle in toggles) 
         {
-            _drawOneToggle = GetComponent<Toggle>();
-
-            _drawOneToggle
-                .onValueChanged
-                .AddListener(delegate { SetDrawNumberOne(); });
-        }
-        else if (CompareTag("DrawThree")) 
-        {
-            _drawThreeToggle = GetComponent<Toggle>();
-
-            _drawThreeToggle
-                .onValueChanged
-                .AddListener(delegate { SetDrawNumberThree(); });
+            if (toggle.gameObject.CompareTag("DrawOne"))
+            {
+                _drawOneToggle = toggle;
+                _drawOneToggle.onValueChanged.AddListener((isOn) => ToggleGroupValueChanged(1));
+            }
+            else if (toggle.gameObject.CompareTag("DrawThree")) 
+            { 
+                _drawThreeToggle = toggle;
+                _drawThreeToggle.onValueChanged.AddListener((isOn) => ToggleGroupValueChanged(3));
+            }
         }
 
-        // Default draw number is set to three
+        // Get draw number -- Default is set to 3
         _drawNum = PlayerPrefs.GetInt("DrawNumber", 3);
 
-        if (_drawNum == 3)
-            IsDrawingByOne = false;
+        if (_drawNum == 1)
+            IsDrawingByThree = false;
         else
-            IsDrawingByOne = true;
+            IsDrawingByThree = true;
     }
 
-    public void SetDrawNumberOne()
+    private void ToggleGroupValueChanged(int number) 
     {
-        if (_drawOneToggle.isOn)
+        if (number == 1) 
         {
-            // Debug.Log("Number of cards drawn is now set to: One");
-
             PlayerPrefs.SetInt("DrawNumber", 1);
             PlayerPrefs.Save();
         }
-    }
-
-    public void SetDrawNumberThree()
-    { 
-        if (_drawThreeToggle.isOn) 
+        else 
         {
-            // Debug.Log("Number of cards drawn is now set to: Three");
-
             PlayerPrefs.SetInt("DrawNumber", 3);
             PlayerPrefs.Save();
         }

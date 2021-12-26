@@ -24,8 +24,8 @@ public class SolitaireManager : MonoBehaviour
     private List<string> _tableauList6 = new List<string>();
     
     public DrawNumberToggle DrawNumberToggle;
-    private int _drawThree;
-    private int _stockPileIndex;
+    private int _totalDrawCount;
+    private int _currentDrawCount;
     
     public Sprite[] CardFaces;
     public GameObject CardPrefab;
@@ -49,8 +49,7 @@ public class SolitaireManager : MonoBehaviour
         SetUpTableau();
         StartCoroutine(DealTableau());
 
-        if (!DrawNumberToggle.IsDrawingByOne)
-            SortStockIntoSetsOfThree();
+        SortStock();
     }
 
     public static List<string> GenerateDeck()
@@ -142,17 +141,10 @@ public class SolitaireManager : MonoBehaviour
 
         _discardPileList.Clear();
     }
-    
-    public void DrawTalon()
-    {
-        if (DrawNumberToggle.IsDrawingByOne)
-        {
-            _stockPileIndex = 0;
 
-            DrawTalonByOne();
-        }
-        else 
-            DrawTalonByThree();
+    public void DrawTalon() 
+    {
+        SetupTalon();
     }
 
     public bool RemoveCard(string name, int pileIndex) 
@@ -175,7 +167,67 @@ public class SolitaireManager : MonoBehaviour
         return card;
     }
 
-    private void DrawTalonByOne() 
+    private void SortStock()
+    {
+        if (DrawNumberToggle.IsDrawingByThree)
+        {
+            // If the player chooses to draw by three, we split the Stock
+            // (that is, the remaining cards in _deck) into sets of up to three cards each
+            int drawRemainder = _deck.Count % 3;
+            int modifier = 0;
+
+            _totalDrawCount = _deck.Count / 3;
+            _stockSetsList.Clear();
+
+            for (int i = 0; i < _totalDrawCount; i++)
+            {
+                List<string> newSet = new List<string>();
+
+                for (int j = 0; j < 3; j++)
+                {
+                    newSet.Add(_deck[j + modifier]);
+                }
+
+                // Add set to stockSets
+                _stockSetsList.Add(newSet);
+                modifier += 3;
+            }
+
+            // Get last set of Stock if there is a remainder
+            if (drawRemainder != 0)
+            {
+                List<string> setRemainder = new List<string>();
+                modifier = 0;
+
+                for (int i = 0; i < drawRemainder; i++)
+                {
+                    setRemainder.Add(_deck[_deck.Count - drawRemainder + modifier]);
+                    modifier++;
+                }
+
+                // And add this last set to stockSets
+                _stockSetsList.Add(setRemainder);
+            }
+        }
+        else 
+        {
+            // Otherwise, we're drawing from the stock one by one
+            _totalDrawCount = _deck.Count;
+            _stockSetsList.Clear();
+
+            for (int i = 0; i < _totalDrawCount; i++)
+            {
+                List<string> newSet = new List<string>();
+
+                newSet.Add(_deck[i]);
+                _stockSetsList.Add(newSet);
+            }
+        }
+
+        _currentDrawCount = 0;
+    }
+
+    private void SetupTalon()
     {
         foreach (Transform child in StockPileGO.transform)
         {
@@ -190,8 +242,8 @@ public class SolitaireManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        // Form the Talon
-        if (_stockPileIndex < _deck.Count)
+        // Form the Talon by drawing either a set of one or three cards
+        if (_currentDrawCount < _totalDrawCount)
         {
             IsStockEmpty = false;
             _talonPileList.Clear();
@@ -199,107 +251,14 @@ public class SolitaireManager : MonoBehaviour
             float xOffset = 2.5f;
             float zOffset = 0.02f;
 
-            foreach (string card in _deck)
+            foreach (string card in _stockSetsList[_currentDrawCount])
             {
                 GameObject newCard = Instantiate(
                     CardPrefab,
-                    new Vector3(StockPileGO.transform.position.x + xOffset,
+                        new Vector3(StockPileGO.transform.position.x + xOffset,
                         StockPileGO.transform.position.y,
                         StockPileGO.transform.position.z - zOffset),
                     Quaternion.identity,
-                    StockPileGO.transform);
-
-                newCard.name = card;
-                newCard.GetComponent<CardItem>().InstantiatedInTalon();
-
-                _talonPileList.Add(card);
-            }
-
-            _stockPileIndex++;
-        }
-        else
-        {
-            IsStockEmpty = true;
-
-            ResetStock();
-        }
-    }
-
-    private void SortStockIntoSetsOfThree()
-    {
-        // If the player chooses to draw by three, we split the Stock
-        // (that is, the remaining cards in _deck) into sets of up to three cards each
-        int drawRemainder = _deck.Count % 3;
-        int modifier = 0;
-
-        _drawThree = _deck.Count / 3;
-        _stockSetsList.Clear();
-
-        for (int i = 0; i < _drawThree; i++)
-        {
-            List<string> newSet = new List<string>();
-
-            for (int j = 0; j < 3; j++)
-            {
-                newSet.Add(_deck[j + modifier]);
-            }
-
-            // Add set to stockSets
-            _stockSetsList.Add(newSet);
-            modifier += 3;
-        }
-
-        // Get last set of Stock if there is a remainder
-        if (drawRemainder != 0)
-        {
-            List<string> setRemainder = new List<string>();
-            modifier = 0;
-
-            for (int i = 0; i < drawRemainder; i++)
-            {
-                setRemainder.Add(_deck[_deck.Count - drawRemainder + modifier]);
-                modifier++;
-            }
-
-            // And add this last set to stockSets
-            _stockSetsList.Add(setRemainder);
-        }
-
-        _stockPileIndex = 0;
-    }
-
-    private void DrawTalonByThree()
-    {
-        foreach (Transform child in StockPileGO.transform)
-        {
-            // Drawn cards are removed from the _deck and added to to the discardPile
-            _deck.Remove(child.name);
-
-            // We will use the discardPile to track which cards are still playable
-            // and then sent back to Stock
-            _discardPileList.Add(child.name);
-
-            // Delete instantiated cards
-            Destroy(child.gameObject);
-        }
-
-        // Form the Talon by drawing a set of three cards
-        if (_stockPileIndex < _drawThree)
-        {
-            IsStockEmpty = false;
-            _talonPileList.Clear();
-
-            float xOffset = 2.5f;
-            float zOffset = 0.02f;
-
-            foreach (string card in _stockSetsList[_stockPileIndex])
-            {
-                GameObject newCard = Instantiate(
-                    CardPrefab, 
-                    new Vector3(StockPileGO.transform.position.x + xOffset, 
-                        StockPileGO.transform.position.y, 
-                        StockPileGO.transform.position.z - zOffset), 
-                    Quaternion.identity, 
                     StockPileGO.transform);
 
                 newCard.name = card;
@@ -311,7 +270,7 @@ public class SolitaireManager : MonoBehaviour
                 zOffset += 0.02f;
             }
 
-            _stockPileIndex++;
+            _currentDrawCount++;
         }
         else
         {
@@ -332,7 +291,6 @@ public class SolitaireManager : MonoBehaviour
 
         _discardPileList.Clear();
 
-        if (!DrawNumberToggle.IsDrawingByOne)
-            SortStockIntoSetsOfThree();
+        SortStock();
     }
 }

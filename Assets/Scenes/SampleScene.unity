@@ -526,9 +526,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!61 &192594430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -807,9 +804,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!61 &484696472
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1004,19 +998,7 @@ MonoBehaviour:
   m_Group: {fileID: 1020900674}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1020900677}
-        m_TargetAssemblyTypeName: DrawNumberToggle, Assembly-CSharp
-        m_MethodName: SetDrawNumberThree
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 1
 --- !u!114 &528018728
 MonoBehaviour:
@@ -1030,7 +1012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2420560276bdf498eedbafde275980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDrawingByOne: 0
+  IsDrawingByThree: 0
 --- !u!1 &530459971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,9 +1594,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!1 &650810954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,9 +1884,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!1 &1015002515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,7 +2069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2420560276bdf498eedbafde275980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDrawingByOne: 0
+  IsDrawingByThree: 0
 --- !u!1 &1116399638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,7 +2378,6 @@ MonoBehaviour:
   - {fileID: 192594425}
   - {fileID: 1493758269}
   - {fileID: 1670700250}
-  IsStockEmpty: 0
 --- !u!4 &1268108403
 Transform:
   m_ObjectHideFlags: 0
@@ -2610,19 +2585,7 @@ MonoBehaviour:
   m_Group: {fileID: 1020900674}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1020900677}
-        m_TargetAssemblyTypeName: DrawNumberToggle, Assembly-CSharp
-        m_MethodName: SetDrawNumberOne
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!114 &1335937933
 MonoBehaviour:
@@ -2636,7 +2599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2420560276bdf498eedbafde275980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDrawingByOne: 0
+  IsDrawingByThree: 0
 --- !u!1 &1340073045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2752,9 +2715,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!1 &1367824651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,9 +2868,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!61 &1493758274
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3132,9 +3089,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!61 &1622396711
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3280,9 +3234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!61 &1653794301
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3428,9 +3379,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!61 &1670700255
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3756,9 +3704,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!1 &2014033030
 GameObject:
   m_ObjectHideFlags: 0
@@ -4007,9 +3952,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!1 &2038886989
 GameObject:
   m_ObjectHideFlags: 0
@@ -4373,9 +4315,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PileIndex: 0
-  IsFaceUp: 0
-  IsInTalonPile: 0
-  IsInFoundationPile: 0
 --- !u!61 &2116255357
 BoxCollider2D:
   m_ObjectHideFlags: 0
